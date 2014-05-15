@@ -1,3 +1,3 @@
 # Grid
 
-Yet another CSS grid library.
+Documentation is coming soon.
