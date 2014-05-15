@@ -1,0 +1,72 @@
+@function halve ($unit) {
+  @return $unit / 2;
+}
+
+@function double ($unit) {
+  @return $unit * 2;
+}
+
+@mixin clear {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin columns ($columns, $spacing: null, $horizontal-spacing: null, $vertical-spacing: null) {
+  @include clear;
+  @if $spacing {
+    @include spacing($spacing of $columns);
+  }
+  @if $horizontal-spacing {
+    @include horizontal-spacing($horizontal-spacing of $columns);
+  }
+  @if $vertical-spacing {
+    @include vertical-spacing($vertical-spacing of $columns);
+  }
+  > * {
+    display: block;
+    box-sizing: border-box;
+    width: 100% / $columns;
+    float: left;
+  }
+}
+
+@mixin span ($span: $columns of $parent-columns) {
+  $columns: nth($span, 1);
+  $parent-columns: nth($span, 3);
+  width: 100% / $parent-columns * $columns;
+}
+
+@mixin spacing ($spacing) {
+  @include horizontal-spacing($spacing);
+  @include vertical-spacing($spacing);
+}
+
+@mixin horizontal-spacing ($spacing: $padding for $columns) {
+  $padding: nth($spacing, 1);
+  $columns: nth($spacing, 3);
+  > * {
+    padding-right: halve($padding);
+    padding-left: halve($padding);
+    &:nth-child(#{ $columns }n + 1) {
+      padding-left: 0;
+    }
+    &:last-child,
+    &:nth-child(#{ $columns }n) {
+      padding-right: 0;
+    }
+  }
+}
+
+@mixin vertical-spacing ($spacing: $padding for $columns) {
+  $padding: nth($spacing, 1);
+  $columns: nth($spacing, 3);
+  > * {
+    padding-top: $padding;
+    &:nth-child(-n+#{ $columns }) {
+      padding-top: 0;
+    }
+  }
+}
