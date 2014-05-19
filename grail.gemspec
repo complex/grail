@@ -3,17 +3,17 @@
 lib = File.expand_path '../lib', __FILE__
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'grid/version'
+require 'grail/version'
 
 Gem::Specification.new do |spec|
 
-  spec.name          = 'grid'
-  spec.version       = Grid::VERSION
+  spec.name = 'grail'
+  spec.version       = Grail::VERSION
   spec.authors       = [ "Tony Richards" ]
   spec.email         = [ "tony@harm.io" ]
-  spec.description   = "Yet another CSS grid library."
-  spec.summary       = "Yet another CSS grid library."
-  spec.homepage      = 'http://github.com/harmed/grid/'
+  spec.description   = "Grail is a couple of small Sass mixins you can use to quickly construct a grid layout."
+  spec.summary       = spec.description
+  spec.homepage      = 'http://github.com/harmed/grail/'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split $/

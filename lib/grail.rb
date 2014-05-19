@@ -1,10 +1,10 @@
-require 'grid/version'
+require 'grail/version'
 
-module Grid
+module Grail
 
   if defined?(Rails) and defined?(Rails::Engine)
     class Engine < ::Rails::Engine
-      require 'grid/engine'
+      require 'grail/engine'
     end
   else
     Sass.load_paths << File.expand_path('../../app/assets/stylesheets', __FILE__)

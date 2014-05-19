@@ -1,0 +1,34 @@
+@function width-calc ($columns: 1, $spacing: 0rem) {
+  @return calc(#{ 100% / $columns } - #{ ($columns - 1) / $columns * $spacing });
+}
+
+@mixin columns ($columns: 1, $spacing: 0rem) {
+  box-sizing: border-box;
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  > * {
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    width: width-calc($columns, $spacing);
+    &:nth-child(n) {
+      margin-top: $spacing;
+      margin-left: $spacing;
+    }
+    &:nth-child(#{ $columns }n + 1) {
+      margin-left: 0;
+    }
+    &:nth-child(-n+#{ $columns }) {
+      margin-top: 0;
+    }
+  }
+}
+
+@mixin span ($span: $columns of $parent-columns, $spacing: 0rem) {
+  $columns: nth($span, 1);
+  $parent-columns: nth($span, 3);
+  width: width-calc($parent-columns / $columns, $spacing);
+}
