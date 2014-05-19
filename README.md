@@ -1,3 +1,3 @@
-# Grid
+# Grail
 
-Documentation is coming soon.
+Documentation coming soon.
