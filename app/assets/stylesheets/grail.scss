@@ -1,4 +1,4 @@
-@mixin columns ($columns: 1, $spacing: 0rem) {
+@mixin columns ($columns: 1, $gutter: 0rem, $flush-right: true) {
   display: block;
   box-sizing: border-box;
   &:after {
@@ -10,14 +10,16 @@
     display: block;
     box-sizing: border-box;
     width: 100% / $columns;
-    width: calc(#{ 100% / $columns } - #{ ($columns - 1) / $columns * $spacing });
+    width: calc(#{ 100% / $columns } - #{ ($columns - 1) / $columns * $gutter });
     &:nth-child(n) {
       float: left;
-      margin-top: $spacing;
-      margin-left: $spacing;
+      margin-top: $gutter;
+      margin-left: $gutter;
     }
-    &:nth-child(#{ $columns }n) {
-      float: right;
+    @if $flush-right {
+      &:nth-child(#{ $columns }n) {
+        float: right;
+      }
     }
     &:nth-child(#{ $columns }n + 1) {
       margin-left: 0;
@@ -28,10 +30,10 @@
   }
 }
 
-@mixin span ($span: $columns of $parent-columns, $spacing: 0rem) {
+@mixin span ($span: $columns of $parent-columns, $gutter: 0rem) {
   $columns: nth($span, 1);
   $parent-columns: nth($span, 3);
   $relative-columns: $parent-columns / $columns;
   width: 100% / $relative-columns;
-  width: calc(#{ 100% / $relative-columns } - #{ ($relative-columns - 1) / $relative-columns * $spacing });
+  width: calc(#{ 100% / $relative-columns } - #{ ($relative-columns - 1) / $relative-columns * $gutter });
 }
