@@ -1,4 +1,4 @@
 Grail
 =====
 
-See http://grail.harmio for documentation and examples.
+See http://grail.harm.io for documentation and examples.
