@@ -1,4 +1,5 @@
 @mixin columns ($columns: 1, $spacing: 0rem) {
+  display: block;
   box-sizing: border-box;
   &:after {
     content: '';
