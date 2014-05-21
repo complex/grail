@@ -1,4 +1,4 @@
 Grail
 =====
 
-See http://grail.herokuapp.com for documentation and examples.
+See http://grail.harm.io for documentation and examples.
