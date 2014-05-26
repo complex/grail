@@ -14,7 +14,7 @@
     &:nth-child(n) {
       float: left;
       margin-top: $gutter;
-      margin-left: $gutter;
+      margin-left: $gutter * .999;
     }
     @if $flush-right {
       &:nth-child(#{ $columns }n) {
