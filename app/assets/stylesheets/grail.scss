@@ -1,4 +1,4 @@
-@mixin columns ($columns: 1, $gutter: 0rem, $flush-right: true) {
+@mixin columns ($columns: 1, $gutter: 0rem, $flush-right: true, $items: '> *') {
   display: block;
   box-sizing: border-box;
   &:after {
@@ -6,7 +6,7 @@
     display: table;
     clear: both;
   }
-  > * {
+  #{ $items } {
     $width: #{ 100% / $columns } - #{ ($columns - 1) / $columns * $gutter };
     display: block;
     box-sizing: border-box;
@@ -14,20 +14,20 @@
     width: -webkit-calc(#{ $width });
     width: -moz-calc(#{ $width });
     width: calc(#{ $width });
-    &:nth-child(n) {
+    &:nth-of-type(n) {
       float: left;
       margin-top: $gutter;
       margin-left: $gutter * .999;
     }
     @if $flush-right {
-      &:nth-child(#{ $columns }n) {
+      &:nth-of-type(#{ $columns }n) {
         float: right;
       }
     }
-    &:nth-child(#{ $columns }n + 1) {
+    &:nth-of-type(#{ $columns }n + 1) {
       margin-left: 0;
     }
-    &:nth-child(-n+#{ $columns }) {
+    &:nth-of-type(-n+#{ $columns }) {
       margin-top: 0;
     }
   }
