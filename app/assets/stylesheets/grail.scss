@@ -14,21 +14,41 @@
     width: -webkit-calc(#{ $width });
     width: -moz-calc(#{ $width });
     width: calc(#{ $width });
-    &:nth-of-type(n) {
-      float: left;
-      margin-top: $gutter;
-      margin-left: $gutter * .999;
-    }
-    @if $flush-right {
-      &:nth-of-type(#{ $columns }n) {
-        float: right;
+    @if $items == '> *' {
+      &:nth-child(n) {
+        float: left;
+        margin-top: $gutter;
+        margin-left: $gutter * .999;
+      }
+      &:nth-child(#{ $columns }n + 1) {
+        margin-left: 0;
+      }
+      &:nth-child(-n+#{ $columns }) {
+        margin-top: 0;
+      }
+      @if $flush-right {
+        &:nth-child(#{ $columns }n) {
+          float: right;
+        }
       }
     }
-    &:nth-of-type(#{ $columns }n + 1) {
-      margin-left: 0;
-    }
-    &:nth-of-type(-n+#{ $columns }) {
-      margin-top: 0;
+    @else {
+      &:nth-of-type(n) {
+        float: left;
+        margin-top: $gutter;
+        margin-left: $gutter * .999;
+      }
+      &:nth-of-type(#{ $columns }n + 1) {
+        margin-left: 0;
+      }
+      &:nth-of-type(-n+#{ $columns }) {
+        margin-top: 0;
+      }
+      @if $flush-right {
+        &:nth-of-type(#{ $columns }n) {
+          float: right;
+        }
+      }
     }
   }
 }
